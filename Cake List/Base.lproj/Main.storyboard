@@ -78,6 +78,7 @@
                                 <connections>
                                     <outlet property="cakeDescription" destination="XAL-IQ-xUk" id="S8Z-8X-7oM"/>
                                     <outlet property="cakeImage" destination="2cJ-YH-PLb" id="Qbr-4y-Tfr"/>
+                                    <outlet property="heightConstraint" destination="Nvb-sz-Ro3" id="RNI-jA-0Lj"/>
                                     <outlet property="title" destination="pLQ-Hv-eeT" id="Kq2-hZ-A8T"/>
                                 </connections>
                             </tableViewCell>

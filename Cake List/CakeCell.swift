@@ -10,6 +10,7 @@ import UIKit
 
 class CakeCell: UITableViewCell {
 
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var cakeDescription: UILabel!
     @IBOutlet weak var cakeImage: UIImageView!
@@ -19,8 +20,12 @@ class CakeCell: UITableViewCell {
         cakeDescription.text = model.description
         cakeImage.image = nil
 
-        let imageSize = cakeImage.bounds.size
+        // there is a glitch here where the bounds size is sometimes 60x60 (as expected) and sometimes (60.3333... , 60.3333) - so using bounds messes up the caching key which causes some extra loads.
+        // as a workaround, grabbing the height constraint instead and using that together with the fact we know the image is square. this gives a constant 60x60 size, without hardcoding it.
 
+        // let imageSize = cakeImage.bounds.size
+        let imageSize = CGSize(width: heightConstraint.constant, height: heightConstraint.constant)
+        
         // TODO: could add an activity indicator in each cell's imageview, to indicate loading?
         ImageStore.shared.loadImage(at: model.imageURI, for: imageSize, scale: traitCollection.displayScale) { image in
             self.cakeImage.image = image
