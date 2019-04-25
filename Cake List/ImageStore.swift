@@ -12,6 +12,10 @@ enum ImageError: Error {
     case UnknownError
 }
 
+// this should all be replaced by a third party lib such as SDWebImage or AlamofireImage
+// done this way due to the constraint of not using third party libs, this does some basic non-persistent caching and downsampling
+// to reduce memory footprint.
+
 class ImageStore {
 
     static let shared = ImageStore()

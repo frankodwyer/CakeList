@@ -66,14 +66,18 @@ class CakesViewModel {
                     self.state.cakes = cakes
                     self.state.error = nil
                 } else {
+                    // we couldn't parse the JSON
                     self.state.cakes = []
                     self.state.error = CakesViewModelError.ParseError
                 }
 
             case .failure(let error):
+                // some network level failure happened
                 self.state.cakes = []
                 self.state.error = error
             }
+
+            // regardless, we are done loading (could do some retries perhaps)
             self.state.isLoading = false
         }
     }
